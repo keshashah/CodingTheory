@@ -15,12 +15,14 @@ int main()
 	int n,k,d,r,q; 
 	char d_cont,h_cont;
 	int new_Hamming=1, new_code=1;
+	FILE *fp;
+	fp = fopen("input_hamming.txt","r");
 
 	while(new_Hamming)
 	{
 		//getting values 
-		printf("Enter r:");
-		scanf("%d",&r);
+		//printf("Enter r:");
+		fscanf(fp,"%d",&r);
 		n=((int)pow(2,r))-1;
 		k=n-r;
 		
@@ -29,13 +31,13 @@ int main()
 		int Hmat[r][n]; // the H matrix
 		
 		// Getting H matrix
-		printf("Enter H matrix row-wise below.\n");
+		//printf("Enter H matrix row-wise below.\n");
 		for(i=0;i<r;i++)
 		{
 			for(j=0;j<n;j++)
 			{
-				printf("Enter H[%d][%d]: ",i+1,j+1);
-				scanf("%d",&Hmat[i][j]);
+		//		printf("Enter H[%d][%d]: ",i+1,j+1);
+				fscanf(fp,"%d",&Hmat[i][j]);
 			}	
 		}
 
@@ -45,8 +47,8 @@ int main()
 		{
 		for(i=0;i<n;i++)
 		{
-			printf("Enter codeword[%d]: ",i+1);
-			scanf("%d",&codeword[i]);
+//			printf("Enter codeword[%d]: ",i+1);
+			fscanf(fp,"%d",&codeword[i]);
 		}
 
 //		printf("Debug 1");
@@ -93,14 +95,15 @@ int main()
 		{
 			printf("%d ",codeword[i]);
 		}
-
+		printf("\n");
+	
 		//getting the wish to decode another codeword
-		printf("\nDo you wish to have new codeword?(y/n)");	
-		scanf("%c",&d_cont);
+		//printf("\nDo you wish to have new codeword?(y/n)");	
+		fscanf(fp,"%c",&d_cont);
 		while(d_cont != 'y' && d_cont != 'n')
 		{
-			printf("\nEnter y or n:");
-			scanf("%c",&d_cont);
+			//printf("\nEnter y or n:");
+			fscanf(fp,"%c",&d_cont);
 		}
 		if(d_cont == 'n')
 			new_code = 0;
@@ -109,12 +112,12 @@ int main()
 		}
 
 	// getting the wish to check next Hamming code and error in codeword
-		printf("\nDo you want to have new Hamming code?(y/n): ");
-		scanf("%c",&h_cont);
+		//printf("\nDo you want to have new Hamming code?(y/n): ");
+		fscanf(fp,"%c",&h_cont);
 		while(h_cont != 'y' && h_cont != 'n')
 		{
-			printf("\nEnter y or n: ");
-			scanf("%c",&h_cont);
+			//printf("\nEnter y or n: ");
+			fscanf(fp,"%c",&h_cont);
 		}
 		
 		if(h_cont == 'n')
@@ -122,6 +125,6 @@ int main()
 		else
 			new_Hamming = 1;
 	}
-
+	
 	return 0;
 }
